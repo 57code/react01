@@ -23,7 +23,9 @@ class Lifecycle extends Component {
     // 父组件传递的属性有变化，做相应响应
     console.log("4.组件属性更新了");
   }
-
+  componentDidCatch(){
+    
+  }
   shouldComponentUpdate() {
     // 组件是否需要更新，返回布尔值，优化点
     console.log("5.组件是否应该更新？");

@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 
 // import store from '../store'
-
+import { add, minus, asyncAdd } from "../store/counter.redux";
 import { connect } from "react-redux";
 
 @connect(
-  state => ({ num: state }), // 状态映射
-  {
-    add: () => ({ type: "add" }),
-    minus: () => ({ type: "minus" })
-  }
+  state => ({ num: state.counter }), // 状态映射
+  { add, minus, asyncAdd }
 )
 class ReduxTest extends Component {
   render() {
@@ -19,6 +16,7 @@ class ReduxTest extends Component {
         <div>
           <button onClick={() => this.props.minus()}>-</button>
           <button onClick={() => this.props.add()}>+</button>
+          <button onClick={() => this.props.asyncAdd()}>asyncAdd</button>
         </div>
       </div>
     );

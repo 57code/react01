@@ -36,10 +36,11 @@ function App(props) {
 @connect(state => ({ isLogin: state.user.isLogin }))
 class PrivateRoute extends Component {
   render() {
-      const {isLogin, component: Component, ...rest} = this.props;
+    const { isLogin, component: Component, ...rest } = this.props;
     // redner和component选项二选一
     return (
-      <Route {...rest}
+      <Route
+        {...rest}
         render={props =>
           isLogin ? (
             <Component {...props} />

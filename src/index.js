@@ -1,6 +1,6 @@
-import React from "react";
+import React from "./kreact";
 import ReactDOM from "react-dom";
-import App from "./App";
+
 function Comp(props) {
   return <h2>hi {props.name}</h2>;
 }

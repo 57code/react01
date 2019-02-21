@@ -11,12 +11,17 @@ export default (state = initialState, { type, payload }) => {
       return state;
   }
 };
+// for redux-thunk
+// export function login(){
+//     return (dispatch)=>{
+//         // mock一个异步登录
+//         setTimeout(()=>{
+//             dispatch({type:'login'})
+//         }, 1000)
+//     }
+// }
 
+// for saga
 export function login(){
-    return (dispatch)=>{
-        // mock一个异步登录
-        setTimeout(()=>{
-            dispatch({type:'login'})
-        }, 1000)
-    }
+  return {type:'login_request'}
 }

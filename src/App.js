@@ -1,25 +1,34 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+
+import "./App.css";
+import JsxTest from "./components/JsxTest";
+import Cart from "./components/Cart";
+import { Welcome1, Welcome2 } from "./components/CompType";
+import { Clock } from "./components/Clock";
+import { StateTest } from "./components/StateTest";
+import CartSample from "./components/CartSample";
+import Lifecycle from "./components/Lifecycle";
 
 class App extends Component {
+  state = { prop: "some content" };
+  componentDidMount() {
+    this.setState({ prop: "new content" });
+
+    setTimeout(() => {
+      this.setState({ prop: "" });
+    }, 2000);
+  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        {/* <JsxTest></JsxTest>
+        <Cart></Cart>*/}
+        {/* <Welcome1 name="你好"></Welcome1> 
+        <Welcome2 name="雷猴"></Welcome2> */}
+        {/* <Clock></Clock> */}
+        {/* <StateTest></StateTest> */}
+        {/* <CartSample></CartSample> */}
+        {this.state.prop && <Lifecycle prop={this.state.prop} />}
       </div>
     );
   }

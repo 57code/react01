@@ -4,6 +4,7 @@ export default class Lifecycle extends Component {
     super(props);
     // 常用于初始化状态
     console.log("1.组件构造函数执行");
+    this.state.bar = props.foo.bar;
   }
   componentWillMount() {
     // 此时可以访问状态和属性，可进行api调用等

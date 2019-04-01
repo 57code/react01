@@ -8,6 +8,7 @@ import { Clock } from "./components/Clock";
 import { StateTest } from "./components/StateTest";
 import CartSample from "./components/CartSample";
 import Lifecycle from "./components/Lifecycle";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 class App extends Component {
   state = { prop: "some content" };
@@ -21,14 +22,16 @@ class App extends Component {
   render() {
     return (
       <div>
-        {/* <JsxTest></JsxTest>
+        <ErrorBoundary>
+          {/* <JsxTest></JsxTest>
         <Cart></Cart>*/}
-        {/* <Welcome1 name="你好"></Welcome1> 
+          {/* <Welcome1 name="你好"></Welcome1> 
         <Welcome2 name="雷猴"></Welcome2> */}
-        {/* <Clock></Clock> */}
-        {/* <StateTest></StateTest> */}
-        {/* <CartSample></CartSample> */}
-        {this.state.prop && <Lifecycle prop={this.state.prop} />}
+          {/* <Clock></Clock> */}
+          {/* <StateTest></StateTest> */}
+          {/* <CartSample></CartSample> */}
+          {this.state.prop && <Lifecycle prop={this.state.prop} />}
+        </ErrorBoundary>
       </div>
     );
   }

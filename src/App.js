@@ -9,6 +9,10 @@ import { StateTest } from "./components/StateTest";
 import CartSample from "./components/CartSample";
 import Lifecycle from "./components/Lifecycle";
 import ErrorBoundary from "./components/ErrorBoundary";
+import AntdSample from "./components/AntdTest";
+import CommentList from './components/Comment';
+import Hoc from './components/Hoc';
+import Composition from './components/Composition'
 
 class App extends Component {
   state = { prop: "some content" };
@@ -30,7 +34,11 @@ class App extends Component {
           {/* <Clock></Clock> */}
           {/* <StateTest></StateTest> */}
           {/* <CartSample></CartSample> */}
-          {this.state.prop && <Lifecycle prop={this.state.prop} />}
+          {/* {this.state.prop && <Lifecycle prop={this.state.prop} />} */}
+          {/* <AntdSample></AntdSample> */}
+          {/* <CommentList></CommentList> */}
+          {/* <Hoc stage="React"></Hoc> */}
+          <Composition></Composition>
         </ErrorBoundary>
       </div>
     );

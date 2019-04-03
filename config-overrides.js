@@ -3,6 +3,7 @@ const { injectBabelPlugin } = require("react-app-rewired");
 module.exports = function override(config, env) {
   // antd按需加载
   config = injectBabelPlugin(
+    ['@babel/plugin-proposal-decorators', { "legacy": true }],
     ["import", { libraryName: "antd", libraryDirectory: "es", style: "css" }],
     config
   );

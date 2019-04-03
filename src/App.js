@@ -6,6 +6,10 @@ import Clock from './components/Clock';
 import StateTest from './components/StateTest';
 import CartSample from './components/CartSample';
 import Lifecycle from './components/Lifecycle';
+import AntdTest from './components/AntdTest';
+import CommentList from './components/CommentList';
+import Hoc from './components/Hoc';
+import Composition from './components/Composition';
 
 
 function formatName(user) {
@@ -49,7 +53,19 @@ class App extends Component {
         {/* <CartSample title="购物车"></CartSample> */}
 
         {/* 生命周期 */}
-        {this.state.prop && <Lifecycle prop={this.state.prop}></Lifecycle>}
+        {/* {this.state.prop && <Lifecycle prop={this.state.prop}></Lifecycle>} */}
+
+        {/* antd */}
+        {/* <AntdTest></AntdTest> */}
+
+        {/* 展示组件和容器组件 */}
+        {/* <CommentList></CommentList> */}
+
+        {/* 高阶组件 */}
+        {/* <Hoc></Hoc> */}
+
+        {/* 组件复合 */}
+        <Composition></Composition>
       </div>
     );
   }

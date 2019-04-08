@@ -10,6 +10,10 @@ import AntdTest from './components/AntdTest';
 import CommentList from './components/CommentList';
 import Hoc from './components/Hoc';
 import Composition from './components/Composition';
+import HookTest from './components/HookTest';
+import ContextTest from './components/ContextTest';
+import WrappedNormalLoginForm from './components/AntdForm';
+import KForm from './components/KForm';
 
 
 function formatName(user) {
@@ -65,7 +69,18 @@ class App extends Component {
         {/* <Hoc></Hoc> */}
 
         {/* 组件复合 */}
-        <Composition></Composition>
+        {/* <Composition></Composition> */}
+
+        {/* Hook */}
+        {/* <HookTest></HookTest> */}
+
+        {/* Context */}
+        {/* <ContextTest></ContextTest> */}
+
+        {/* <WrappedNormalLoginForm></WrappedNormalLoginForm> */}
+
+        {/* kForm */}
+        <KForm></KForm>
       </div>
     );
   }

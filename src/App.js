@@ -13,6 +13,8 @@ import AntdSample from "./components/AntdTest";
 import CommentList from './components/Comment';
 import Hoc from './components/Hoc';
 import Composition from './components/Composition'
+import KFormTest from './components/KFormTest';
+import WrappedNormalLoginForm from './components/AntdForm';
 
 class App extends Component {
   state = { prop: "some content" };
@@ -38,7 +40,9 @@ class App extends Component {
           {/* <AntdSample></AntdSample> */}
           {/* <CommentList></CommentList> */}
           {/* <Hoc stage="React"></Hoc> */}
-          <Composition></Composition>
+          {/* <Composition></Composition> */}
+          {/* <KFormTest></KFormTest> */}
+          <WrappedNormalLoginForm></WrappedNormalLoginForm>
         </ErrorBoundary>
       </div>
     );

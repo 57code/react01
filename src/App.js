@@ -15,6 +15,7 @@ import Hoc from './components/Hoc';
 import Composition from './components/Composition'
 import KFormTest from './components/KFormTest';
 import WrappedNormalLoginForm from './components/AntdForm';
+import HooksTest from './components/HookTest';
 
 class App extends Component {
   state = { prop: "some content" };
@@ -42,7 +43,8 @@ class App extends Component {
           {/* <Hoc stage="React"></Hoc> */}
           {/* <Composition></Composition> */}
           {/* <KFormTest></KFormTest> */}
-          <WrappedNormalLoginForm></WrappedNormalLoginForm>
+          {/* <WrappedNormalLoginForm></WrappedNormalLoginForm> */}
+          <HooksTest></HooksTest>
         </ErrorBoundary>
       </div>
     );

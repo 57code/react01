@@ -1,34 +1,36 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { Welcome1, Welcome2 } from './components/CompType';
-import Clock from './components/Clock';
-import StateTest from './components/StateTest';
-import CartSample from './components/CartSample';
-import Lifecycle from './components/Lifecycle';
-import AntdTest from './components/AntdTest';
-import CommentList from './components/CommentList';
-import Hoc from './components/Hoc';
-import Composition from './components/Composition';
-import HookTest from './components/HookTest';
-import ContextTest from './components/ContextTest';
-import WrappedNormalLoginForm from './components/AntdForm';
-import KForm from './components/KForm';
-
+import { Welcome1, Welcome2 } from "./components/CompType";
+import Clock from "./components/Clock";
+import StateTest from "./components/StateTest";
+import CartSample from "./components/CartSample";
+import Lifecycle from "./components/Lifecycle";
+import AntdTest from "./components/AntdTest";
+import CommentList from "./components/CommentList";
+import Hoc from "./components/Hoc";
+import Composition from "./components/Composition";
+import HookTest from "./components/HookTest";
+import ContextTest from "./components/ContextTest";
+import WrappedNormalLoginForm from "./components/AntdForm";
+import KForm from "./components/KForm";
+import ReduxTest from "./components/ReduxTest";
+import { Provider } from "react-redux";
+import store from "./store";
+import RouteSample from "./components/RouteSample";
 
 function formatName(user) {
   return user.firstName + " " + user.lastName;
 }
 
 class App extends Component {
-  state = {prop:'some prop'}
-  componentDidMount(){
-    this.setState({prop:'a new prop'})
+  state = { prop: "some prop" };
+  componentDidMount() {
+    this.setState({ prop: "a new prop" });
 
     setTimeout(() => {
-      this.setState({prop:''})
+      this.setState({ prop: "" });
     }, 2000);
-    
   }
   render() {
     const name = "jerry";
@@ -80,7 +82,13 @@ class App extends Component {
         {/* <WrappedNormalLoginForm></WrappedNormalLoginForm> */}
 
         {/* kForm */}
-        <KForm></KForm>
+        {/* <KForm></KForm> */}
+
+        {/* Redux */}
+        <Provider store={store}>
+          {/* <ReduxTest /> */}
+          <RouteSample />
+        </Provider>
       </div>
     );
   }

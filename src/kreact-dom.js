@@ -1,7 +1,10 @@
-import {initVNode} from './kvdom'
-
+import { initVNode } from "./kvdom";
+// vnode -> dom
 function render(vnode, container) {
-//   container.innerHTML = `<pre>${JSON.stringify(vnode, null, 2)}</pre>`;
-container.appendChild(initVNode(vnode));
+  // 将虚拟dom树转换为真实dom
+  const node = initVNode(vnode);
+  container.appendChild(node);
+  //   container.innerHTML = `<pre>${JSON.stringify(vnode, null, 2)}</pre>`;
 }
-export default {render}
+
+export default { render };

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 // import logo from './logo.svg';
 import "./App.css";
-import style from "./App.module.css";
 import Hoc from "./Hoc";
 import JsxTest from "./JsxTest";
 import CompType from "./CompType";
@@ -18,7 +17,7 @@ import ContextTest from "./ContextTest";
 class App extends Component {
   render() {
     return (
-      <div className={style.img}>
+      <div>
         {/* 自定义组件开头大写 */}
         {/* <JsxTest /> */}
         {/* 组件类型 */}

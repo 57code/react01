@@ -14,6 +14,7 @@ import { Button } from "antd";
 import CommentList from "./CommentList";
 import Composition from "./Composition";
 import ContextTest from "./ContextTest";
+import HooksTest from "./HookTest";
 
 class App extends Component {
   render() {
@@ -34,7 +35,9 @@ class App extends Component {
         {/* 组件复合 */}
         {/* <Composition /> */}
         {/* 上下文 */}
-        <ContextTest />
+        {/* <ContextTest /> */}
+        {/* Hooks */}
+        <HooksTest />
       </div>
     );
   }

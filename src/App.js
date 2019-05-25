@@ -13,6 +13,9 @@ import { Button } from "antd";
 import CommentList from "./CommentList";
 import Composition from "./Composition";
 import ContextTest from "./ContextTest";
+import HookTest from "./HookTest";
+import AntdForm from "./AntdForm";
+import KFormTest from "./KFormTest";
 
 class App extends Component {
   render() {
@@ -33,7 +36,11 @@ class App extends Component {
         {/* 组件复合 */}
         {/* <Composition /> */}
         {/* 上下文 */}
-        <ContextTest />
+        {/* <ContextTest /> */}
+        {/* <HookTest /> */}
+        {/* 组件设计与实现 */}
+        {/* <AntdForm /> */}
+        <KFormTest />
       </div>
     );
   }

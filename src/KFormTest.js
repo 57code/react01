@@ -1,4 +1,5 @@
 import React from "react";
+import {Icon} from 'antd'
 
 //高阶组件：扩展现有表单，提供控件包装、事件处理、表单校验
 function kFormCreate(Comp) {
@@ -55,6 +56,22 @@ function kFormCreate(Comp) {
       cb(ret, this.state);
     };
 
+    // 焦点处理，错误获取等
+    handleFocus = e => {
+      const field = e.target.name;
+      this.setState({
+        [field + "Focus"]: true
+      });
+    };
+
+    isFieldTouched = field => {
+      return !!this.state[field + "Focus"];
+    };
+
+    getFieldError = field => {
+      return this.state[field + "Message"];
+    };
+
     // 包装函数：接收字段名和校验选项返回一个高阶组件
     getFieldDec = (field, option) => {
       this.options[field] = option; // 选项告诉我们如何校验
@@ -63,7 +80,8 @@ function kFormCreate(Comp) {
           {React.cloneElement(InputComp, {
             name: field,
             value: this.state[field] || "",
-            onChange: this.handleChange //执行校验设置状态等
+            onChange: this.handleChange, //执行校验设置状态等
+            onFocus: this.handleFocus //焦点处理
           })}
         </div>
       );
@@ -74,10 +92,44 @@ function kFormCreate(Comp) {
         <Comp
           getFieldDec={this.getFieldDec}
           validateFields={this.validateFields}
+          isFieldTouched={this.isFieldTouched}
+          getFieldError={this.getFieldError}
         />
       );
     }
   };
+}
+
+class FormItem extends React.Component {
+  render() {
+    return (
+      <div>
+        {/* 默认插槽内容 */}
+        {this.props.children}
+        {this.props.help && (
+          <p
+            style={{
+              color: this.props.validateStatus === "error" ? "red" : "green"
+            }}
+          >
+            {this.props.help}
+          </p>
+        )}
+      </div>
+    );
+  }
+}
+
+class KInput extends React.Component {
+  render() {
+    const {prefix, ...rest} = this.props;
+    return (
+      <div>
+        {prefix}
+        <input {...rest}/>
+      </div>
+    );
+  }
 }
 
 @kFormCreate
@@ -93,18 +145,20 @@ class KFormTest extends React.Component {
     });
   };
   render() {
-    const { getFieldDec } = this.props;
+    // 获取表单项错误
+    const { getFieldDec, isFieldTouched, getFieldError } = this.props;
+    const unameError = isFieldTouched("username") && getFieldError("username");
     return (
       <div>
-        <div>
+        <FormItem validateStatus="error" help={unameError || ""}>
           {getFieldDec("username", {
             rules: [{ required: true, message: "Please input your username!" }]
-          })(<input type="text" />)}
-        </div>
+          })(<KInput type="text" prefix={<Icon type="user" />} />)}
+        </FormItem>
         <div>
           {getFieldDec("password", {
             rules: [{ required: true, message: "Please input your Password!" }]
-          })(<input type="password" />)}
+          })(<KInput type="text" prefix={<Icon type="lock" />} />)}
         </div>
 
         <button onClick={this.onSubmit}>登录</button>

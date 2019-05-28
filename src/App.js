@@ -17,6 +17,9 @@ import HookTest from "./HookTest";
 import AntdForm from "./AntdForm";
 import KFormTest from "./KFormTest";
 
+import store from './store';
+import {Provider} from 'react-redux';
+
 class App extends Component {
   render() {
     return (
@@ -37,10 +40,13 @@ class App extends Component {
         {/* <Composition /> */}
         {/* 上下文 */}
         {/* <ContextTest /> */}
-        {/* <HookTest /> */}
+        <Provider store={store}>
+          <HookTest />
+        </Provider>
+        
         {/* 组件设计与实现 */}
         {/* <AntdForm /> */}
-        <KFormTest />
+        {/* <KFormTest /> */}
       </div>
     );
   }

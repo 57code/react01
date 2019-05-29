@@ -139,11 +139,12 @@ function HookTest({ fruits, loading, asyncFetch }) {
   return (
     <BrowserRouter>
       <nav>
-        <Link to="/">水果列表</Link>|<Link to="/add">添加水果</Link>
+        <Link to="/list">水果列表</Link>|<Link to="/add">添加水果</Link>
       </nav>
 
       <div>
         <Switch>
+          <Route path="/" exact render={()=><Redirect to="/list"></Redirect>}></Route>
           <Route
             path="/list"
             render={() =>
@@ -159,7 +160,6 @@ function HookTest({ fruits, loading, asyncFetch }) {
           <Route component={() => <h3>页面不存在</h3>} />
         </Switch>
 
-        {/* <Redirect to="/list"></Redirect> */}
       </div>
     </BrowserRouter>
   );

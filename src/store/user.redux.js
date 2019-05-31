@@ -11,16 +11,21 @@ export default (state = initialState, action) => {
       return state;
   }
 };
-export function login(user) {
-  return (dispatch, getState) => {
 
-    dispatch({ type: "requestLogin" });
-    setTimeout(() => {
-      if (Date.now() % 2 === 0) {
-        dispatch({ type: "loginSuccess" });
-      } else {
-        dispatch({ type: "loginFailure" });
-      }
-    }, 1000);
-  };
+// 派发动作依然是对象而非函数
+export function login(uname) {
+  return { type: "login", uname };
 }
+// export function login(user) {
+//   return (dispatch, getState) => {
+
+//     dispatch({ type: "requestLogin" });
+//     setTimeout(() => {
+//       if (Date.now() % 2 === 0) {
+//         dispatch({ type: "loginSuccess" });
+//       } else {
+//         dispatch({ type: "loginFailure" });
+//       }
+//     }, 1000);
+//   };
+// }

@@ -95,7 +95,7 @@ const Login = connect(
     <div>
       <p>用户登录</p>
       <hr />
-      <button onClick={login}>登录</button>
+      <button onClick={() => login('Jerry')}>登录</button>
     </div>
   );
 });
@@ -137,17 +137,20 @@ function HookTest({ fruits, loading, asyncFetch }) {
   }, []);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter >
       <nav>
-        <Link to="/list">水果列表</Link>|<Link to="/add">添加水果</Link>
+        <Link to="/list">水果列表</Link>|
+        <Link to="/add">添加水果</Link>
       </nav>
 
       <div>
         <Switch>
-          <Route path="/" exact render={()=><Redirect to="/list"></Redirect>}></Route>
+         
+          <Route path="/" exact 
+            render={(props)=><Redirect to="/list"></Redirect>}></Route>
           <Route
             path="/list"
-            render={() =>
+            render={(props) =>
               loading ? (
                 <div>数据加载中...</div>
               ) : (
@@ -157,7 +160,7 @@ function HookTest({ fruits, loading, asyncFetch }) {
           />
           <PrivateRoute path="/add" component={FruitAdd} />
           <Route path="/login" component={Login} />
-          <Route component={() => <h3>页面不存在</h3>} />
+          <Route component={({match,history,location}) => <h3>页面不存在</h3>} />
         </Switch>
 
       </div>

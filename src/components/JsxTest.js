@@ -43,7 +43,7 @@ export default class JsxTest extends Component {
           src={logo}
           alt="logo"
           style={{ width: 100 }}
-          className={style.img}
+          className={style.img2}
         />
         {/* <label htmlFor=""></label> */}
       </div>

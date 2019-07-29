@@ -6,6 +6,16 @@ import ContextTest from "./components/ContextTest";
 import HocTest from "./components/HocTest.js";
 import Composition from "./components/Composition";
 import HooksTest from "./components/HooksTest";
+import WrappedNormalLoginForm from "./components/FormTest";
+
+// import Button from 'antd/lib/button'
+// import "antd/dist/antd.css"
+
+import {Button} from 'antd';
+import KFormTest from './components/KFormTest';
+import Dialog, {Dialog2} from './components/Dialog';
+import Tree from './components/Tree';
+import CommentList from './components/CommentList';
 
 // 函数式组件
 // class App extends Component {
@@ -34,7 +44,18 @@ function App(props) {
       {/* 组件复合 */}
       {/* <Composition /> */}
       {/* Hooks */}
-      <HooksTest />
+      {/* <HooksTest /> */}
+      {/* <Button>mua~</Button> */}
+      {/* <WrappedNormalLoginForm></WrappedNormalLoginForm> */}
+      {/* <KFormTest></KFormTest> */}
+      {/* <Dialog>
+        somthing!!!!
+      </Dialog>
+      <Dialog2>
+        fjfjfjfj
+      </Dialog2> */}
+      {/* <Tree></Tree> */}
+      <CommentList></CommentList>
     </div>
   );
 }

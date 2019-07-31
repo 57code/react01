@@ -47,7 +47,7 @@ function App(props) {
       {/* <HooksTest /> */}
       {/* <Button>mua~</Button> */}
       {/* <WrappedNormalLoginForm></WrappedNormalLoginForm> */}
-      {/* <KFormTest></KFormTest> */}
+      <KFormTest></KFormTest>
       {/* <Dialog>
         somthing!!!!
       </Dialog>
@@ -55,7 +55,7 @@ function App(props) {
         fjfjfjfj
       </Dialog2> */}
       {/* <Tree></Tree> */}
-      <CommentList></CommentList>
+      {/* <CommentList></CommentList> */}
     </div>
   );
 }

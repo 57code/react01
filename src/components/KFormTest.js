@@ -16,10 +16,9 @@ function kFormCreate(Comp) {
     // 全局校验
     validateFields = cb => {
       //   console.log(this.state);
-      const rets = Object.keys(this.options).map(field => {
-        return this.validateField(field);
-      });
-      const ret = rets.every(v => v);
+      const ret = Object.keys(this.options).every(field =>
+        this.validateField(field)
+      );
       // 将校验结果传出去，并传递数据
       cb(ret, this.state);
     };

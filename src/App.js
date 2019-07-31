@@ -16,6 +16,8 @@ import KFormTest from './components/KFormTest';
 import Dialog, {Dialog2} from './components/Dialog';
 import Tree from './components/Tree';
 import CommentList from './components/CommentList';
+import ReduxTest from './components/ReduxTest';
+import MyReduxTest from './components/MyReduxTest';
 
 // 函数式组件
 // class App extends Component {
@@ -47,7 +49,7 @@ function App(props) {
       {/* <HooksTest /> */}
       {/* <Button>mua~</Button> */}
       {/* <WrappedNormalLoginForm></WrappedNormalLoginForm> */}
-      <KFormTest></KFormTest>
+      {/* <KFormTest></KFormTest> */}
       {/* <Dialog>
         somthing!!!!
       </Dialog>
@@ -56,6 +58,8 @@ function App(props) {
       </Dialog2> */}
       {/* <Tree></Tree> */}
       {/* <CommentList></CommentList> */}
+      {/* <ReduxTest></ReduxTest> */}
+      <MyReduxTest></MyReduxTest>
     </div>
   );
 }

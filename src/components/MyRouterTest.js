@@ -132,13 +132,13 @@ class Route extends Component {
             <RouterContext.Provider value={props}>
               {children // children优先级最高，不论匹配与否存在就执行
                 ? children
-                : props.match // 后面的component和render必须匹配
-                ? component // 若匹配首先查找component
+                : (props.match // 后面的component和render必须匹配
+                ? (component // 若匹配首先查找component
                   ? React.createElement(component) // 若它存在渲染之
-                  : render // 若render选项存在
+                  : (render // 若render选项存在
                   ? render(props) // 按render渲染结果
-                  : null
-                : null}
+                  : null))
+                : null)}
             </RouterContext.Provider>
           );
         }}

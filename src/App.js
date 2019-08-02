@@ -18,6 +18,8 @@ import Tree from './components/Tree';
 import CommentList from './components/CommentList';
 import ReduxTest from './components/ReduxTest';
 import MyReduxTest from './components/MyReduxTest';
+import RouterTest from './components/RouterTest';
+import MyRouterTest from './components/MyRouterTest';
 
 // 函数式组件
 // class App extends Component {
@@ -59,7 +61,9 @@ function App(props) {
       {/* <Tree></Tree> */}
       {/* <CommentList></CommentList> */}
       {/* <ReduxTest></ReduxTest> */}
-      <MyReduxTest></MyReduxTest>
+      {/* <MyReduxTest></MyReduxTest> */}
+      {/* <RouterTest></RouterTest> */}
+      <MyRouterTest></MyRouterTest>
     </div>
   );
 }

@@ -46,10 +46,12 @@ export function initVnode(vnode, parentContext) {
 function updateVnode(vnode, newVnode, node, parentContext) {
     let { vtype } = vnode
 
+    // 更新class组件
     if (vtype === VCOMPONENT) {
         return updateVcomponent(vnode, newVnode, node, parentContext)
     }
 
+    // 更新function组件
     if (vtype === VSTATELESS) {
         return updateVstateless(vnode, newVnode, node, parentContext)
     }
@@ -59,12 +61,17 @@ function updateVnode(vnode, newVnode, node, parentContext) {
         return node
     }
 
+    // 更新原生标签
+    // 如果用户设置innerHTML
     let oldHtml = vnode.props[HTML_KEY] && vnode.props[HTML_KEY].__html
     if (oldHtml != null) {
+        // 先更新属性，在替换innerHTML
         updateVelem(vnode, newVnode, node, parentContext)
         initVchildren(newVnode, node, parentContext)
     } else {
+        // 先更新子元素，重排
         updateVChildren(vnode, newVnode, node, parentContext)
+        // 属性更新
         updateVelem(vnode, newVnode, node, parentContext)
     }
     return node
@@ -185,6 +192,7 @@ function diffVchildren(patches, vnode, newVnode, node, parentContext) {
     let vchildrenLen = vchildren.length
     let newVchildrenLen = newVchildren.length
 
+    // 全部创建
     if (vchildrenLen === 0) {
         if (newVchildrenLen > 0) {
             for (let i = 0; i < newVchildrenLen; i++) {
@@ -198,6 +206,7 @@ function diffVchildren(patches, vnode, newVnode, node, parentContext) {
         }
         return
     } else if (newVchildrenLen === 0) {
+        // 全部删除
         for (let i = 0; i < vchildrenLen; i++) {
             patches.removes.push({
                 vnode: vchildren[i],
@@ -220,6 +229,7 @@ function diffVchildren(patches, vnode, newVnode, node, parentContext) {
                 continue
             }
             let newVnode = newVchildren[j]
+            // 更新
             if (vnode === newVnode) {
                 updates[j] = {
                     shouldIgnore: shouldIgnoreUpdate(node),
@@ -287,6 +297,7 @@ function diffVchildren(patches, vnode, newVnode, node, parentContext) {
                 index: i,
             })
         } else if (item.vnode.vtype === VELEMENT) {
+            // 递归更新
             diffVchildren(patches, item.vnode, item.newVnode, item.node, item.parentContext)
         }
     }
@@ -302,6 +313,7 @@ function diffVchildren(patches, vnode, newVnode, node, parentContext) {
 
 function updateVelem(velem, newVelem, node) {
     let isCustomComponent = velem.type.indexOf('-') >= 0 || velem.props.is != null
+    // 给属性打补丁
     _.patchProps(node, velem.props, newVelem.props, isCustomComponent)
     if (velem.ref !== newVelem.ref) {
         detachRef(velem.refs, velem.ref, node)
@@ -402,7 +414,7 @@ function initVcomponent(vcomponent, parentContext) {
 function updateVcomponent(vcomponent, newVcomponent, node, parentContext) {
     // 更新组件
     let uid = vcomponent.uid
-    let component = node.cache[uid]
+    let component = node.cache[uid] // 拿到组件实例
     let { $updater: updater, $cache: cache } = component
     let { type: Component, props: nextProps } = newVcomponent
     let componentContext = getContextByTypes(parentContext, Component.contextTypes)
@@ -421,6 +433,7 @@ function updateVcomponent(vcomponent, newVcomponent, node, parentContext) {
         attachRef(newVcomponent.refs, newVcomponent.ref, component)
     }
 
+    // 提交组件更新
     updater.emitUpdate(nextProps, componentContext)
     
     return cache.node
@@ -516,8 +529,10 @@ export function clearPending() {
     clearPendingComponents()
 }
 
+// diff发生的地方
 export function compareTwoVnodes(vnode, newVnode, node, parentContext) {
     let newNode = node
+    // 三个操作：删除、替换和更新
     if (newVnode == null) {
         // remove
         destroyVnode(vnode, node)
@@ -529,6 +544,7 @@ export function compareTwoVnodes(vnode, newVnode, node, parentContext) {
         node.parentNode.replaceChild(newNode, node)
     } else if (vnode !== newVnode || parentContext) {
         // same type and same key -> update
+        // 操作：属性更新、更新children
         newNode = updateVnode(vnode, newVnode, node, parentContext)
     }
     return newNode

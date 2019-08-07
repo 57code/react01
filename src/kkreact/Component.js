@@ -59,23 +59,31 @@ class Updater{
 	}
 	addState(nextState) {
 		if (nextState) {
+			// 存入pendingStates，为了待会批量处理
 			this.pendingStates.push(nextState)
-			if (!this.isPending) {
+			if (!this.isPending) { // 如果没有在工作
 				this.emitUpdate()
 			}
 		}
 	}
 
 	getState() {
+		// 实例， 待更新状态
 		let { instance, pendingStates } = this
+		// 从组件实例中拿出现有state和props
 		let { state, props } = instance
 		if (pendingStates.length) {
 			state = {...state}
+			// setState({foo:'bla', bar:'lala'})
+			// setState({foo:'dfdf', bar:'dfdfdf'})
+			// setState((ns)=>({foo:ns.foo+'dfdf', bar:'dfdfdf'}))
 			pendingStates.forEach(nextState => {
+				// 如果是数组则做替换
 				let isReplace = _.isArr(nextState)
 				if (isReplace) {
 					nextState = nextState[0]
 				}
+				// 如果传递的是函数
 				if (_.isFn(nextState)) {
 					nextState = nextState.call(instance, state, props)
 				}
@@ -109,6 +117,7 @@ export default class Component{
 	static isReactComponent = {}
 
 	constructor(props, context){
+		// 创建一个更新器实例
 		this.$updater = new Updater(this)
 		this.$cache = { isMounted: false }
 		this.props = props
@@ -130,10 +139,11 @@ export default class Component{
 		let nextState = $cache.state || state
 		let nextContext = $cache.context || context
 		let parentContext = $cache.parentContext
-		let node = $cache.node
-		let vnode = $cache.vnode
+		let node = $cache.node // 上次执行dom
+		let vnode = $cache.vnode // 上次执行vdom
 		// 缓存
 		$cache.props = $cache.state = $cache.context = null
+		// 开始工作
 		$updater.isPending = true
 		if (this.componentWillUpdate) {
 			this.componentWillUpdate(nextProps, nextState, nextContext)
@@ -143,8 +153,10 @@ export default class Component{
 		this.context = nextContext
 
 		// 下面才是重点  对比vnode
-	    let newVnode = renderComponent(this)
+		let newVnode = renderComponent(this) // 执行render函数获取新vdom
+		// diff和patch发生在这里
 		let newNode = compareTwoVnodes(vnode, newVnode, node, getChildContext(this, parentContext))
+		// 比较新旧dom
 		if (newNode !== node) {
 			newNode.cache = newNode.cache || {}
 			syncCache(newNode.cache, node.cache, newNode)
@@ -156,10 +168,13 @@ export default class Component{
 		if (this.componentDidUpdate) {
 			this.componentDidUpdate(props, state, context)
 		}
+		// setState里面指定的回调函数
 		if (callback) {
 			callback.call(this)
 		}
+		// 重置标识符
 		$updater.isPending = false
+		// 稳妥起见会在提交一次更新
 		$updater.emitUpdate()
 		// 更新
 	}
@@ -176,6 +191,7 @@ export default class Component{
 function shouldUpdate(component, nextProps, nextState, nextContext, callback) {
 	// 是否应该更新 判断shouldComponentUpdate生命周期
 	let shouldComponentUpdate = true
+	// 首先判断组件是否存在shouldComponentUpdate
 	if (component.shouldComponentUpdate) {
 		shouldComponentUpdate = component.shouldComponentUpdate(nextProps, nextState, nextContext)
 	}
